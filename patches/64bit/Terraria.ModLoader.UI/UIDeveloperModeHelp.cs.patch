@@ -5,6 +5,6 @@
  				Main.menuMode = Interface.developerModeHelpID;
  			};
 +			// Change download name from ModCompile to ModCompile64
- 			DownloadFileFromUrl("ModCompile64", url, file, () => {
+ 			DownloadFileFromUrl("ModCompile", url, file, () => {
  				try {
  					Extract(file);

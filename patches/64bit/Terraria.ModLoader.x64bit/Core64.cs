@@ -23,12 +23,12 @@ namespace Terraria.ModLoader.x64bit
 		/// <summary>
 		/// Boolean that will allow you to switch between vanilla and 64bit mode, so you can play with vanilla friends!
 		/// </summary>
-		internal static bool vanillaMode;
-		internal static bool liteMode = false;
+		// internal static bool vanillaMode;
+		// internal static bool liteMode = false;
 
 		internal static readonly string vanillaVersion = "Terraria" + 194;
 
-		internal static bool betaMode => false && !liteMode;
+		// internal static bool betaMode => false && !liteMode;
 
 		internal const int vanillaChestLimit = 1000;
 		internal static readonly int maxChest = 2000;
@@ -57,17 +57,12 @@ namespace Terraria.ModLoader.x64bit
 
 		internal static void DrawPatreon(SpriteBatch sb, int loopNum, int offsetX, int offsetY, bool hasFocus, Color color12) {
 			// TODO: Localization for vanilla, tml, and lite modes when they're actually used
-			string patreonShortURL = !vanillaMode ? Language.GetTextValue("tModLoader.VanillaMode") : Language.GetTextValue("tModLoader.tModMode");
-			string tmlModeString = liteMode ? Language.GetTextValue("tModLoader.DisableLite") : Language.GetTextValue("tModLoader.EnableLite");
 			bool showPatreon = Main.menuMode == 0;
 			string architecture = Language.GetTextValue("tModLoader.RunningBitMode", Environment.Is64BitProcess ? 64.ToString() : 32.ToString());
 			string GoG = InstallVerifier.IsGoG ? Language.GetTextValue("tModLoader.GoG") : Language.GetTextValue("tModLoader.Steam");
 			string drawVersion;
-
-			if (vanillaMode)
-				drawVersion = Main.versionNumber;
-			else
-				drawVersion = Main.versionNumber + Environment.NewLine + ModLoader.versionedName + $" - {architecture} {GoG} {PlatformUtilities.RunningPlatform()}";
+			
+			drawVersion = Main.versionNumber + Environment.NewLine + ModLoader.versionedName + $" - {architecture} {GoG} {PlatformUtilities.RunningPlatform()}";
 
 			Vector2 origin3 = Main.fontMouseText.MeasureString(drawVersion);
 			origin3.X *= 0.5f;
@@ -78,22 +73,22 @@ namespace Terraria.ModLoader.x64bit
 			if (loopNum == 4)
 				color12 = new Color(127, 191, 191, 76);
 
-			if (Main.menuMode == 10002 && vanillaMode)
+			if (Main.menuMode == 10002)
 				Main.menuMode = 0;
 
 			if (showPatreon) {
-				Vector2 urlSize = Main.fontMouseText.MeasureString(patreonShortURL);
-				Main.spriteBatch.DrawString(Main.fontMouseText, patreonShortURL, new Vector2(offsetX + 10f, Main.screenHeight - origin3.Y - 50f - offsetY + 2f), color12, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+				// Vector2 urlSize = Main.fontMouseText.MeasureString(patreonShortURL);
+				// Main.spriteBatch.DrawString(Main.fontMouseText, patreonShortURL, new Vector2(offsetX + 10f, Main.screenHeight - origin3.Y - 50f - offsetY + 2f), color12, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-				if (loopNum == 4 && Main.mouseLeftRelease && Main.mouseLeft && new Rectangle((int)(offsetX + 10f), (int)(Main.screenHeight - origin3.Y - 50f - offsetY + 2f), (int)urlSize.X, (int)origin3.Y).Contains(new Point(Main.mouseX, Main.mouseY)) && hasFocus) {
-					Main.PlaySound(SoundID.MenuOpen);
+				// if (loopNum == 4 && Main.mouseLeftRelease && Main.mouseLeft && new Rectangle((int)(offsetX + 10f), (int)(Main.screenHeight - origin3.Y - 50f - offsetY + 2f), (int)urlSize.X, (int)origin3.Y).Contains(new Point(Main.mouseX, Main.mouseY)) && hasFocus) {
+					// Main.PlaySound(SoundID.MenuOpen);
 					/*vanillaMode = !vanillaMode;
 					Main.SaveSettings();
 					Interface.infoMessage.Show("You'll need to restart the game so that the necessary change can apply.", 0, null, "Restart", () => Environment.Exit(0));*/
-					Interface.infoMessage.Show(Language.GetTextValue("tModLoader.UnfinishedFeature"), 0);
-				}
+					// Interface.infoMessage.Show(Language.GetTextValue("tModLoader.UnfinishedFeature"), 0);
+				// }
 
-				if (!vanillaMode) {
+				/*if (!vanillaMode) {
 					urlSize = Main.fontMouseText.MeasureString(tmlModeString);
 					Main.spriteBatch.DrawString(Main.fontMouseText, tmlModeString, new Vector2(offsetX + 10f, Main.screenHeight - origin3.Y - 72f - offsetY + 2f), color12, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 					if (loopNum == 4 && Main.mouseLeftRelease && Main.mouseLeft && new Microsoft.Xna.Framework.Rectangle((int)(offsetX + 10f), (int)(Main.screenHeight - origin3.Y - 72f - offsetY + 2f), (int)urlSize.X, (int)origin3.Y).Contains(new Microsoft.Xna.Framework.Point(Main.mouseX, Main.mouseY)) && hasFocus) {
@@ -106,7 +101,7 @@ namespace Terraria.ModLoader.x64bit
 							Environment.Exit(0);
 						});
 					}
-				}
+				}*/
 			}
 		}
 
