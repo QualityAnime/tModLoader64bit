@@ -9,7 +9,7 @@ namespace Terraria.ModLoader
 {
 	public abstract class ModPrefix
 	{
-		private static byte nextPrefix = PrefixID.Count;
+		private static int nextPrefix = PrefixID.Count;
 
 		// TODO storing twice? could see a better implementation
 		internal static readonly IList<ModPrefix> prefixes = new List<ModPrefix>();
